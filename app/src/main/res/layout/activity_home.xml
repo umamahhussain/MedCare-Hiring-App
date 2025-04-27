@@ -11,7 +11,8 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:orientation="vertical">
+       android:orientation="vertical"
+       android:gravity="center">
 
        <androidx.fragment.app.FragmentContainerView
            android:id="@+id/welcomeContainer"
@@ -26,11 +27,56 @@
            android:name="com.example.medcare.BookingFragment"
            android:layout_width="match_parent"
            android:layout_height="0dp"
-           android:layout_weight="1"
+           android:layout_weight="3"
            tools:layout="@layout/fragment_booking" />
 
+       <androidx.fragment.app.FragmentContainerView
+           android:id="@+id/appointmentContainer"
+           android:name="com.example.medcare.AppointmentsFragment"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="3"
+           tools:layout="@layout/fragment_appointments" />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:layout_marginBottom="15dp"
+           android:padding="16dp">
+
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btnRatings"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="Ratings"
+               android:textSize="16sp"
+               android:textColor="@android:color/white"
+               android:background="@drawable/btn_bg"
+               android:layout_marginEnd="16dp"
+               android:padding="12dp"
+               android:drawablePadding="8dp"/>
 
 
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btnSupport"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:text="Support"
+               android:textSize="16sp"
+               android:textColor="@android:color/white"
+               android:background="@drawable/btn_bg"
+               android:padding="12dp"
+           android:drawablePadding="8dp"/>
+       </LinearLayout>
+
+
+       <include
+           android:id="@+id/footer"
+           layout="@layout/footer" />
 
    </LinearLayout>
 

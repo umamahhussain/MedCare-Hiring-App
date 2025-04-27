@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(this, Login.class);
+            Intent intent = new Intent(this, Home.class);
             startActivity(intent);
             finish(); // Close the SplashActivity
-        }, 4000); // 3 seconds delay
+        }, 1000);
     }
 
     public void init(){

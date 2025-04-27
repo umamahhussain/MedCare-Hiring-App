@@ -13,7 +13,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,5 +44,10 @@ dependencies {
     implementation(libs.firebase.bom)
     implementation (libs.firebase.auth)
     implementation (libs.firebase.database.v2003)
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
 
+    implementation("com.mikepenz:iconics-core:5.3.0")
+    implementation("com.mikepenz:iconics-views:5.3.0")
+    implementation("com.mikepenz:fontawesome-typeface:5.13.3.1-kotlin@aar")
 }
