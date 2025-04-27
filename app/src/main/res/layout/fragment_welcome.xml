@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Welcome"
-        android:textAllCaps="true"
+        android:textStyle="bold"
         android:background="@drawable/round_border"
-        android:fontFamily="@font/audiowide"
-        android:textSize="25sp"
+        android:fontFamily="@font/merriweather_light"
+        android:textSize="15sp"
         android:layout_margin="15dp"
-        android:padding="16dp"
+        android:padding="14dp"
         android:textColor="#0066CC"
-        android:letterSpacing="0.2" />
+        android:letterSpacing="0.1" />
 
 
 

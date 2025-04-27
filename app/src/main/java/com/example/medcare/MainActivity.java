@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(this, Home.class);
+            Intent intent = new Intent(this, Login.class);
             startActivity(intent);
             finish(); // Close the SplashActivity
         }, 1000);
