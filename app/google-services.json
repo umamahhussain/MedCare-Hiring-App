@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "726071345973",
+    "project_id": "medcare-cd8cc",
+    "storage_bucket": "medcare-cd8cc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726071345973:android:8d4550c74fc8421757c27c",
+        "android_client_info": {
+          "package_name": "com.example.medcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZJonc5OK6wnC7TImGJ9ovlYWkDb14lP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
