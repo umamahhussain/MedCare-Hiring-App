@@ -2,4 +2,7 @@
 
     <string name="app_name">Medcare</string>
     <string name="slogan">care beyond boundaries</string>
+    <string name="signupLink">Don\'t have an account? Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">SIGN-UP</string>
 </resources>
