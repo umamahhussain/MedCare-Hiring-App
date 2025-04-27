@@ -3,6 +3,7 @@ package com.example.medcare;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ public class Signup extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private boolean isPatient;
 
+    private static final String TAG = "SignupDebug";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,22 +36,18 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         init();
-
         mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference = FirebaseDatabase
+                .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users");
         isPatient = getIntent().getBooleanExtra("EXTRA_IS_PATIENT", true);
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
+
+        signupButton.setOnClickListener(v -> {
+            registerUser();
         });
-        dobET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDatePicker();
-            }
+        dobET.setOnClickListener(v -> {
+            openDatePicker();
         });
     }
 
@@ -58,75 +57,70 @@ public class Signup extends AppCompatActivity {
         number = findViewById(R.id.phoneET);
         password = findViewById(R.id.passwordET);
         confirmPassword = findViewById(R.id.confirmPasswordET);
-        dobET = findViewById(R.id.dobET);  // This is the EditText for DOB
+        dobET = findViewById(R.id.dobET);
         signupButton = findViewById(R.id.buttonSignUp);
     }
 
     private void openDatePicker() {
-        // Get the current date
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int year = calendar.get(Calendar.YEAR),
+                month = calendar.get(Calendar.MONTH),
+                day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Create and show the DatePickerDialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                Signup.this,
+                this,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
-                    // Format the date as YYYY-MM-DD
-                    selectedMonth += 1;  // Months are zero-indexed in DatePickerDialog
+                    selectedMonth += 1;
                     String dateOfBirth = selectedYear + "-" + selectedMonth + "-" + selectedDay;
-                    dobET.setText(dateOfBirth);  // Set the selected date to the EditText
+                    dobET.setText(dateOfBirth);
                 },
                 year, month, day
         );
-
-        // Show the DatePickerDialog
         datePickerDialog.show();
     }
 
     private void registerUser() {
-        String name = fullName.getText().toString().trim();
-        String userEmail = email.getText().toString().trim();
-        String phone = number.getText().toString().trim();
-        String pass = password.getText().toString().trim();
+        String name        = fullName.getText().toString().trim();
+        String userEmail   = email.getText().toString().trim();
+        String phone       = number.getText().toString().trim();
+        String pass        = password.getText().toString().trim();
         String confirmPass = confirmPassword.getText().toString().trim();
-        String dobText = dobET.getText().toString().trim();
+        String dobText     = dobET.getText().toString().trim();
 
         if (name.isEmpty() || userEmail.isEmpty() || phone.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() || dobText.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Validation failed: empty fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!pass.equals(confirmPass)) {
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Validation failed: passwords don't match", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Register user with Firebase Authentication
-        mAuth.createUserWithEmailAndPassword(userEmail, pass).addOnCompleteListener(this, task ->
-        {
+       mAuth.createUserWithEmailAndPassword(userEmail, pass).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
-                // User successfully signed up
-                String userId = mAuth.getCurrentUser().getUid();  // Get the user ID from FirebaseAuth
-
-                // Store user data in Realtime Database
+                String userId = mAuth.getCurrentUser().getUid();
                 User user = new User(userId, name, userEmail, phone, 0, isPatient);
-                databaseReference.child(userId).setValue(user)
-                        .addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                Toast.makeText(Signup.this, "Signup successful!", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(this, Login.class);
-                                startActivity(i);
-                                finish();
-                            }
-                            else
-                            {
-                                Toast.makeText(Signup.this, "Database error, try again.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+
+                databaseReference.child(userId).setValue(user).addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(Signup.this, "DB write success", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Signup.this, Login.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        String msg = task1.getException() != null
+                                ? task1.getException().getMessage()
+                                : "unknown";
+                        Toast.makeText(Signup.this, "DB error: " + msg, Toast.LENGTH_LONG).show();
+                    }
+                });
             } else {
-                Toast.makeText(Signup.this, "Signup failed. Try again.", Toast.LENGTH_SHORT).show();
+                String msg = task.getException() != null
+                        ? task.getException().getMessage()
+                        : "unknown";
+                Toast.makeText(Signup.this, "Auth error: " + msg, Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Auth failed", task.getException());
             }
         });
     }
