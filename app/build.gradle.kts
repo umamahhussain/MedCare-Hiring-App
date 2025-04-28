@@ -50,4 +50,9 @@ dependencies {
     implementation("com.mikepenz:iconics-core:5.3.0")
     implementation("com.mikepenz:iconics-views:5.3.0")
     implementation("com.mikepenz:fontawesome-typeface:5.13.3.1-kotlin@aar")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.google.code.gson:gson:2.10.1")
+
 }

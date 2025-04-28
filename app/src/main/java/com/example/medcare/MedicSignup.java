@@ -97,9 +97,7 @@ public class MedicSignup extends AppCompatActivity {
         String confirm    = medicConfirmPasswordET.getText().toString();
 
         // 6) Simple validation
-        if (name.isEmpty() || email.isEmpty() || phone.isEmpty()
-                || dob.isEmpty() || role.isEmpty()
-                || pass.isEmpty() || confirm.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || dob.isEmpty() || role.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
