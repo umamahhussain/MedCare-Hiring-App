@@ -6,19 +6,17 @@ public class User {
     private String email;
     private String phone;
     private Integer age;
-    private boolean isPatient;
 
     public User() {
     }
 
     // Full constructor
-    public User(String userId, String name, String email, String phone, Integer age, Boolean isPatient) {
+    public User(String userId, String name, String email, String phone, Integer age) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.age = age;
-        this.isPatient = isPatient;
     }
 
     // Getters and Setters
@@ -60,13 +58,5 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Boolean getIsPatient() {
-        return isPatient;
-    }
-
-    public void setIsPatient(Boolean isPatient) {
-        this.isPatient = isPatient;
     }
 }

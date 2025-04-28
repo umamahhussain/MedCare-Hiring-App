@@ -144,7 +144,6 @@
                 android:hint="Select Role"
                 android:padding="12dp"
                 android:popupBackground="@drawable/dropdown_popup_bg"
-                android:textColor="#0066CC"
                 android:textSize="16sp"
                 android:inputType="none" />
 

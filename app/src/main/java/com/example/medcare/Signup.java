@@ -40,8 +40,6 @@ public class Signup extends AppCompatActivity {
         databaseReference = FirebaseDatabase
                 .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference("Users");
-        isPatient = getIntent().getBooleanExtra("EXTRA_IS_PATIENT", true);
-
 
         signupButton.setOnClickListener(v -> {
             registerUser();
@@ -100,7 +98,7 @@ public class Signup extends AppCompatActivity {
        mAuth.createUserWithEmailAndPassword(userEmail, pass).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 String userId = mAuth.getCurrentUser().getUid();
-                User user = new User(userId, name, userEmail, phone, 0, isPatient);
+                User user = new User(userId, name, userEmail, phone, 0);
 
                 databaseReference.child(userId).setValue(user).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
