@@ -38,7 +38,7 @@ public class SelectUser extends AppCompatActivity {
         });
 
         medic.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Signup.class);
+            Intent intent = new Intent(this, MedicSignup.class);
             intent.putExtra("EXTRA_IS_PATIENT", false);
             startActivity(intent);
         });
