@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
             finish(); // Close the SplashActivity
-        }, 1000);
+        }, 4000);
     }
 
     public void init(){

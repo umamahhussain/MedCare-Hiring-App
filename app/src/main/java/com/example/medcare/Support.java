@@ -71,7 +71,7 @@ public class Support extends AppCompatActivity {
         String prompt = "You are an AI medical assistant providing precise first aid instructions.\n" +
                 "- Always give step-by-step emergency instructions first.\n" +
                 "- Mention when professional medical attention is needed precisely.\n" +
-                "- Keep responses clear, concise, and in simple language.\n" +
+                "- Keep responses clear, concise, and in simple language and return plain text, no bold or anything.\n" +
                 "- If the question is unclear, ask for more details.\n\n" +
                 "User: \"" + userInput + "\"\n" +
                 "AI:";

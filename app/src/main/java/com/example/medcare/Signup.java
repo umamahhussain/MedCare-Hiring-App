@@ -98,7 +98,7 @@ public class Signup extends AppCompatActivity {
        mAuth.createUserWithEmailAndPassword(userEmail, pass).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 String userId = mAuth.getCurrentUser().getUid();
-                User user = new User(userId, name, userEmail, phone, 0);
+                User user = new User(userId, name, userEmail, phone, 0, "user");
 
                 databaseReference.child(userId).setValue(user).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {

@@ -118,15 +118,7 @@ public class MedicSignup extends AppCompatActivity {
                     // 8) On success, push Medic object to Realtime DB
                     String uid = mAuth.getCurrentUser().getUid();
                     Medic medic = new Medic(
-                            uid,
-                            name,
-                            email,
-                            phone,
-                            role,
-                            0,      // default experience
-                            0.0,    // default fees
-                            0.0,    // default rating
-                            true    // available by default
+                            uid, name, email, phone, role, 0, 0.0, 0.0,true
                     );
 
 
