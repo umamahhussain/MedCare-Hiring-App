@@ -5,16 +5,22 @@ public class Medic {
     private String name;
     private String email;
     private String phone;
+    private String specialization;
     private String role; // "Nurse", "Physiotherapist"
     private int experience; // in years
     private double fees;
     private double rating;
     private boolean available;
+    private String pictureURL;
 
     public Medic(){
 
     }
-    public Medic(String id, String name, String email, String phone, String role, int experience, double fees, double rating, boolean available) {
+
+
+
+    public Medic(String id, String name, String email, String phone, String role, int experience,
+                 double fees, double rating, boolean available, String specialization, String pictureURL) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -24,6 +30,8 @@ public class Medic {
         this.fees = fees;
         this.rating = rating;
         this.available = available;
+        this.specialization = specialization;
+        this.pictureURL = pictureURL;
     }
     public String getId() {
         return id;
@@ -95,5 +103,21 @@ public class Medic {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public String getPictureURL() {
+        return pictureURL;
+    }
+
+    public void setPictureURL(String pictureURL) {
+        this.pictureURL = pictureURL;
     }
 }
