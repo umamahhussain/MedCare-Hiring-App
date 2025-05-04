@@ -51,6 +51,7 @@ public class MedicBookingAdapter extends RecyclerView.Adapter<MedicBookingAdapte
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, MedicDetails.class);
             intent.putExtra("medicName", medic.getName());
+            intent.putExtra("id", medic.getId());
             intent.putExtra("experience", medic.getExperience());
             intent.putExtra("specialty", medic.getSpecialization());
             intent.putExtra("imageUrl", medic.getPictureURL());

@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:text="Dr. Sarah Khan"
                 android:textStyle="bold"
+                android:textColor="#0066CC"
                 android:textSize="16sp" />
 
             <TextView
@@ -50,12 +51,5 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bookNowBtn"
-            android:text="More Info"
-            android:textColor="@color/white"
-            android:background="@drawable/type1btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

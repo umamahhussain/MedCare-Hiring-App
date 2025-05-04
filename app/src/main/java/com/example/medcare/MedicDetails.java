@@ -1,6 +1,8 @@
 package com.example.medcare;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ public class MedicDetails extends AppCompatActivity {
 
     private TextView nameTextView, experienceTextView, specialtyTextView, feesTextView, ratingTextView, availabilityTextView, roleTextView;
     private ImageView profileImageView;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MedicDetails extends AppCompatActivity {
         availabilityTextView = findViewById(R.id.detailAvailabilityforMedicDetails);
         roleTextView = findViewById(R.id.detailRoleforMedicDetails);
         profileImageView = findViewById(R.id.detailImageforMedicDetails);
+        btn = findViewById(R.id.bookNowButtonforMedicDetails);
 
 
         // Get data
@@ -51,6 +55,15 @@ public class MedicDetails extends AppCompatActivity {
         ratingTextView.setText("Rating: " + rating + " / 5");
         availabilityTextView.setText("Available: " + (available ? "Yes" : "No"));
         roleTextView.setText("Role: " + role);
+
+        btn.setOnClickListener(v->{
+            Intent intent = new Intent(this, BookMedicNow.class);
+            intent.putExtra("name", name);
+            intent.putExtra("role", experience);
+            intent.putExtra("id", getIntent().getStringExtra("id"));
+            intent.putExtra("imageUrl", imageUrl);
+            startActivity(intent);
+        });
 
         Glide.with(this)
                 .load(imageUrl)

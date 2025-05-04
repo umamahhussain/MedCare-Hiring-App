@@ -1,6 +1,7 @@
 package com.example.medcare;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -91,6 +92,11 @@ public class Login extends AppCompatActivity {
                             public void onDataChange(DataSnapshot snapshot) {
                                 if (snapshot.exists()) {
                                     // User found in Users node
+                                    // Save userId to SharedPreferences
+                                    SharedPreferences prefs = getSharedPreferences("MedCarePrefs", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = prefs.edit();
+                                    editor.putString("userId", userId);
+                                    editor.apply();
                                     String role = snapshot.child("role").getValue(String.class);
                                     goToDashboard(role);
                                 } else {
