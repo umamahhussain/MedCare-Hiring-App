@@ -30,12 +30,6 @@
             android:name=".Support"
             android:exported="false" />
         <activity
-            android:name=".BookPhysio"
-            android:exported="false" />
-        <activity
-            android:name=".BookNurse"
-            android:exported="false" />
-        <activity
             android:name=".MedicSignup"
             android:exported="false" />
         <activity

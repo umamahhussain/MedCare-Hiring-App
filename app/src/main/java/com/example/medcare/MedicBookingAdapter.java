@@ -54,7 +54,14 @@ public class MedicBookingAdapter extends RecyclerView.Adapter<MedicBookingAdapte
             intent.putExtra("experience", medic.getExperience());
             intent.putExtra("specialty", medic.getSpecialization());
             intent.putExtra("imageUrl", medic.getPictureURL());
+            intent.putExtra("email", medic.getEmail());
+            intent.putExtra("phone", medic.getPhone());
+            intent.putExtra("fees", medic.getFees());
+            intent.putExtra("rating", medic.getRating());
+            intent.putExtra("available", medic.isAvailable());
+            intent.putExtra("role", medic.getRole());
             context.startActivity(intent);
+
         });
     }
 
