@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Medcare"
         tools:targetApi="31">
         <activity
+            android:name=".ManageMedicProfile"
+            android:exported="false" />
+        <activity
             android:name=".MedicDetails"
             android:exported="false" />
         <activity
