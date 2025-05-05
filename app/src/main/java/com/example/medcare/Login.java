@@ -105,6 +105,10 @@ public class Login extends AppCompatActivity {
                                         @Override
                                         public void onDataChange(DataSnapshot snapshot) {
                                             if (snapshot.exists()) {
+                                                SharedPreferences prefs = getSharedPreferences("MedCarePrefs", MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = prefs.edit();
+                                                editor.putString("medicId", userId);
+                                                editor.apply();
                                                 String role = snapshot.child("role").getValue(String.class);
                                                 goToDashboard(role);
                                             } else {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_medic_appointments"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#F9F9F9"
+android:padding="16dp"
+tools:context=".ViewBookingsMedic">
+
+<TextView
+    android:id="@+id/titleTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Your Appointments"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:paddingBottom="8dp"
+    android:textColor="#222" />
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/appointmentsRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="8dp"
+    tools:listitem="@layout/confirmappointmentcard" />
+</LinearLayout>
