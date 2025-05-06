@@ -1,59 +1,75 @@
 package com.example.medcare;
 
 public class Appointment {
+    private String id;                  // Appointment ID
+    private String userId;             // Patient/User ID
+    private String medicId;            // Doctor/Medic ID
+    private String userName;          // user's name
+    private String profileImageUrl;    // Doctor's profile image
+    private String date;               // Date of appointment
+    private String time;               // Time of appointment
+    private String location;           // Location of appointment
+    private String notes;              // Notes from patient
+    private String medicName;
+    private double fees;               // Consultation fees
+    private String status;             // "pending", "confirmed", etc.
 
-    private String appointmentId;  // Unique ID for appointment
-    private String userId;          // ID of the patient/user
-    private String doctorId;        // ID of the doctor
-    private String doctorName;
-    private String appointmentTime;
-    private String location;
-    private String profileImageUrl;
-    private String status;          // Optional: "upcoming", "completed", etc.
-
-    // Empty constructor for Firebase
     public Appointment() {
+        // Required for Firebase
     }
 
-    public Appointment(String appointmentId, String userId, String doctorId, String doctorName,
-                       String appointmentTime, String location, String profileImageUrl, String status) {
-        this.appointmentId = appointmentId;
+    public Appointment(String id, String userId, String medicId, String userName, String profileImageUrl,
+                       String date, String time, String location, String notes, double fees, String status,
+                       String medicName) {
+        this.id = id;
         this.userId = userId;
-        this.doctorId = doctorId;
-        this.doctorName = doctorName;
-        this.appointmentTime = appointmentTime;
-        this.location = location;
+        this.medicId = medicId;
+        this.userName = userName;
         this.profileImageUrl = profileImageUrl;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.notes = notes;
+        this.medicName = medicName;
+        this.fees = fees;
         this.status = status;
     }
 
     // Getters
-    public String getAppointmentId() {
-        return appointmentId;
+    public String getId() {
+        return id;
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public String getMedicId() {
+        return medicId;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
-    public String getAppointmentTime() {
-        return appointmentTime;
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
+    public String getNotes() {
+        return notes;
+    }
+
+    public double getFees() {
+        return fees;
     }
 
     public String getStatus() {
@@ -61,35 +77,59 @@ public class Appointment {
     }
 
     // Setters
-    public void setAppointmentId(String appointmentId) {
-        this.appointmentId = appointmentId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setMedicId(String medicId) {
+        this.medicId = medicId;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAppointmentTime(String appointmentTime) {
-        this.appointmentTime = appointmentTime;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setFees(double fees) {
+        this.fees = fees;
+    }
+
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getMedicName() {
+        return medicName;
+    }
+
+    public void setMedicName(String medicName) {
+        this.medicName = medicName;
     }
 }

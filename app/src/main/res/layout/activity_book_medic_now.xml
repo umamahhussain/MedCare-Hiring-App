@@ -79,6 +79,41 @@
             android:layout_marginBottom="24dp"
             android:timePickerMode="spinner" />
 
+        <!-- Location Picker -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment Location"
+            android:textSize="16sp"
+            android:textColor="#004d99"
+            android:textStyle="bold"
+            android:fontFamily="@font/merriweather_light"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/bookingLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter location or use map"
+            android:background="@drawable/round_border"
+            android:padding="12dp"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/merriweather_light" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pickLocationBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick from Map"
+            android:textColor="#ffffff"
+            android:background='@drawable/type1btn'
+            android:padding="10dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/merriweather_light" />
+
+
         <!-- Special Notes -->
         <EditText
             android:id="@+id/bookingNotes"

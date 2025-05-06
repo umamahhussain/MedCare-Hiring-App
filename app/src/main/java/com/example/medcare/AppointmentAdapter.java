@@ -36,8 +36,8 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     public void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position) {
         Appointment appointment = appointmentList.get(position);
 
-        holder.doctorName.setText(appointment.getDoctorName());
-        holder.appointmentTime.setText(appointment.getAppointmentTime());
+        holder.doctorName.setText(appointment.getMedicName());
+        holder.appointmentTime.setText(appointment.getTime());
         holder.appointmentLocation.setText(appointment.getLocation());
 
         // Load profile image

@@ -1,10 +1,12 @@
 package com.example.medcare;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,9 +18,13 @@ public class BookMedicNow extends AppCompatActivity {
     private ImageView medicImageView;
     private TextView medicNameTextView, medicRoleTextView;
     private CalendarView calendarView;
+    private EditText locationEditText;
+
     private TimePicker timePicker;
     private EditText notesEditText;
     private Button confirmButton;
+    private static final int REQUEST_MAP_PICKER = 101;
+
 
     private String selectedDate;
     private int selectedHour, selectedMinute;
@@ -31,6 +37,15 @@ public class BookMedicNow extends AppCompatActivity {
         setContentView(R.layout.activity_book_medic_now);
 
         Toast.makeText(this, "BookMedicNow launched", Toast.LENGTH_SHORT).show();
+
+        locationEditText = findViewById(R.id.bookingLocationEditText);
+        Button locationPickerButton = findViewById(R.id.pickLocationBtn);
+
+        locationPickerButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BookMedicNow.this, MapPickerActivity.class);
+            startActivityForResult(intent, REQUEST_MAP_PICKER);
+        });
+
 
         // Bind views
         medicImageView = findViewById(R.id.bookingMedicImage);
@@ -47,12 +62,6 @@ public class BookMedicNow extends AppCompatActivity {
         medicRole = getIntent().getStringExtra("role");
         medicImageUrl = getIntent().getStringExtra("imageUrl");
 
-        // Debug Toasts
-        Toast.makeText(this, "Received: ID=" + medicId + ", Name=" + medicName, Toast.LENGTH_LONG).show();
-
-        if (medicId == null || medicName == null || medicImageUrl == null) {
-            Toast.makeText(this, "Error: Missing data from Intent", Toast.LENGTH_LONG).show();
-        }
 
         medicNameTextView.setText(medicName);
         medicRoleTextView.setText(medicRole);
@@ -69,62 +78,86 @@ public class BookMedicNow extends AppCompatActivity {
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             calendar.set(year, month, dayOfMonth);
             selectedDate = getFormattedDate(calendar.getTimeInMillis());
-            Toast.makeText(this, "Selected date: " + selectedDate, Toast.LENGTH_SHORT).show();
+
         });
 
         // Get time from TimePicker (24-hour format)
         timePicker.setIs24HourView(true);
         selectedHour = timePicker.getHour();
         selectedMinute = timePicker.getMinute();
-        Toast.makeText(this, "Default time: " + selectedHour + ":" + selectedMinute, Toast.LENGTH_SHORT).show();
+
 
         // Save time when changed
         timePicker.setOnTimeChangedListener((view, hourOfDay, minute) -> {
             selectedHour = hourOfDay;
             selectedMinute = minute;
-            Toast.makeText(this, "Time changed: " + selectedHour + ":" + selectedMinute, Toast.LENGTH_SHORT).show();
+
         });
 
         confirmButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Confirm button clicked", Toast.LENGTH_SHORT).show();
 
             String notes = notesEditText.getText().toString().trim();
+            String location = locationEditText.getText().toString().trim();
+
             SharedPreferences prefs = getSharedPreferences("MedCarePrefs", MODE_PRIVATE);
             String userId = prefs.getString("userId", null);
 
-
             String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
 
-            // Create a simple map for Firebase
-            HashMap<String, Object> appointment = new HashMap<>();
-            appointment.put("userId", userId);
-            appointment.put("medicId", medicId);
-            appointment.put("medicName", medicName);
-            appointment.put("medicRole", medicRole);
-            appointment.put("date", selectedDate);
-            appointment.put("time", timeFormatted);
-            appointment.put("notes", notes);
-
-            Toast.makeText(this, "Booking: " + selectedDate + " " + timeFormatted, Toast.LENGTH_LONG).show();
-
-            // Push to Firebase
-            FirebaseDatabase
+            DatabaseReference usersRef = FirebaseDatabase
                     .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                    .getReference("appointments")
-                    .push()
-                    .setValue(appointment)
-                    .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Appointment booked successfully!", Toast.LENGTH_LONG).show();
-                        finish();
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Booking failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    });
-        });
-    }
+                    .getReference("Users");
 
-    private String getFormattedDate(long timeInMillis) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return sdf.format(timeInMillis);
+            usersRef.child(userId).get().addOnSuccessListener(dataSnapshot -> {
+                String userName = dataSnapshot.child("name").getValue(String.class);  // <- Fetch user's name
+
+                // Now create Appointment object
+                DatabaseReference appointmentRef = FirebaseDatabase
+                        .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                        .getReference("appointments")
+                        .push();
+
+                String appointmentId = appointmentRef.getKey();
+
+                Appointment appointment = new Appointment();
+                appointment.setId(appointmentId);
+                appointment.setUserId(userId);
+                appointment.setUserName(userName); // ✅ Store user's name
+                appointment.setMedicId(medicId);
+                appointment.setMedicName(medicName);
+                appointment.setProfileImageUrl(medicImageUrl);
+                appointment.setDate(selectedDate);
+                appointment.setTime(timeFormatted);
+                appointment.setLocation(location);
+                appointment.setNotes(notes);
+                appointment.setFees(0); // Or set actual fee
+                appointment.setStatus("pending");
+
+                appointmentRef.setValue(appointment)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(this, "Appointment booked!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(this, "Booking failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        });
+            }).addOnFailureListener(e -> {
+                Toast.makeText(this, "Failed to fetch user name", Toast.LENGTH_SHORT).show();
+            });
+        });
+
     }
+            private String getFormattedDate ( long timeInMillis){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                return sdf.format(timeInMillis);
+            }
+
+            @Override
+            protected void onActivityResult ( int requestCode, int resultCode, Intent data){
+                super.onActivityResult(requestCode, resultCode, data);
+                if (requestCode == REQUEST_MAP_PICKER && resultCode == RESULT_OK) {
+                    String selectedLocation = data.getStringExtra("location");
+                    locationEditText.setText(selectedLocation);
+                }
+            }
 }

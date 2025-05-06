@@ -46,27 +46,41 @@ public class AppointmentsFragment extends Fragment {
 
         // 3) Prepare dummy data
         appointmentList = new ArrayList<>();
-        appointmentList.add(new Appointment(
-                "A001", "P001", "D001",
-                "10:00 AM", "2025-04-30",
-                 "Dr. Sarah",
-                "https://example.com/sarah_profile.jpg",
-                "upcoming"
-        ));
-        appointmentList.add(new Appointment(
-                "A002", "P002", "D002",
-                "12:30 PM", "2025-05-02",
-                "Dr. Ahmed",
-                "https://example.com/ahmed_profile.jpg",
-                "upcoming"
-        ));
-        appointmentList.add(new Appointment(
-                "A003", "P003", "D003",
-                "3:15 PM", "2025-05-04",
-                 "Dr. Zoya",
-                "",  // no doctor image
-                "upcoming"
-        ));
+
+        Appointment appt1 = new Appointment();
+        appt1.setId("A001");
+        appt1.setUserId("P001");
+        appt1.setMedicId("D001");
+        appt1.setTime("10:00 AM");
+        appt1.setDate("2025-04-30");
+        appt1.setUserName("Dr. Sarah");
+        appt1.setProfileImageUrl("https://example.com/sarah_profile.jpg");
+        appt1.setStatus("upcoming");
+
+        Appointment appt2 = new Appointment();
+        appt2.setId("A002");
+        appt2.setUserId("P002");
+        appt2.setMedicId("D002");
+        appt2.setTime("12:30 PM");
+        appt2.setDate("2025-05-02");
+        appt2.setUserName("Dr. Ahmed");
+        appt2.setProfileImageUrl("https://example.com/ahmed_profile.jpg");
+        appt2.setStatus("upcoming");
+
+        Appointment appt3 = new Appointment();
+        appt3.setId("A003");
+        appt3.setUserId("P003");
+        appt3.setMedicId("D003");
+        appt3.setTime("3:15 PM");
+        appt3.setDate("2025-05-04");
+        appt3.setUserName("Dr. Zoya");
+        appt3.setProfileImageUrl(""); // No image
+        appt3.setStatus("upcoming");
+
+        appointmentList.add(appt1);
+        appointmentList.add(appt2);
+        appointmentList.add(appt3);
+
 
         // 4) Create & set Adapter
         adapter = new AppointmentAdapter(requireContext(), appointmentList);

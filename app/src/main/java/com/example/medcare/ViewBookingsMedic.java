@@ -23,7 +23,7 @@ import java.util.List;
 public class ViewBookingsMedic extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ConfirmBookingAdapter adapter;
-    private List<Appointments> appointmentList = new ArrayList<>();
+    private List<Appointment> appointmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class ViewBookingsMedic extends AppCompatActivity {
                     public void onDataChange(DataSnapshot snapshot) {
                         appointmentList.clear();
                         for (DataSnapshot snap : snapshot.getChildren()) {
-                            Appointments appt = snap.getValue(Appointments.class);
+                            Appointment appt = snap.getValue(Appointment.class);
                             appointmentList.add(appt);
                         }
                         adapter.notifyDataSetChanged();
