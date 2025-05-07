@@ -47,20 +47,21 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         Appointment appointment = appointmentList.get(position);
 
         holder.doctorName.setText(appointment.getMedicName());
-        holder.appointmentTime.setText(appointment.getTime());
-        holder.appointmentLocation.setText(appointment.getLocation());
 
-        // Load profile image
+        // Combine date and time
+        String dateTime = appointment.getDate() + " at " + appointment.getTime();
+        holder.appointmentTime.setText(dateTime);
+
+
+        // Load profile image with circle crop and border
         if (appointment.getProfileImageUrl() != null && !appointment.getProfileImageUrl().isEmpty()) {
-            // Load real profile image with rounded corners
             Glide.with(context)
                     .load(appointment.getProfileImageUrl())
-                    .apply(RequestOptions.circleCropTransform()) // Circle crop!
-                    .placeholder(R.drawable.boy)           // While loading
-                    .error(R.drawable.boy)                 // If failed
+                    .apply(RequestOptions.circleCropTransform())
+                    .placeholder(R.drawable.boy)
+                    .error(R.drawable.boy)
                     .into(holder.profileImage);
         } else {
-            // No profile picture, show default
             holder.profileImage.setImageResource(R.drawable.boy);
         }
 
@@ -70,6 +71,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -86,7 +88,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             profileImage = itemView.findViewById(R.id.profileImage);
             doctorName = itemView.findViewById(R.id.doctorName);
             appointmentTime = itemView.findViewById(R.id.appointmentTime);
-            appointmentLocation = itemView.findViewById(R.id.appointmentLocation);
         }
     }
 }

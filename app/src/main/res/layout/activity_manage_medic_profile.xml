@@ -22,7 +22,7 @@
             android:layout_height="100dp"
             android:src="@drawable/boy"
             android:scaleType="centerCrop"
-            android:background="@drawable/round_border"
+            android:background="@drawable/white_image_border"
             android:padding="4dp" />
 
         <TextView
@@ -61,14 +61,6 @@
             android:layout_height="wrap_content"
             android:inputType="phone" />
 
-        <EditText
-            android:id="@+id/medicSpecialProfileEdit"
-            android:hint="Specialization"
-            android:layout_margin="8dp"
-            android:padding="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
 
         <Spinner
             android:id="@+id/medicSpecializationSpinner"

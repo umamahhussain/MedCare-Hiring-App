@@ -108,45 +108,59 @@ public class BookMedicNow extends AppCompatActivity {
                     .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     .getReference("Users");
 
-            usersRef.child(userId).get().addOnSuccessListener(dataSnapshot -> {
-                String userName = dataSnapshot.child("name").getValue(String.class);  // <- Fetch user's name
+            usersRef.child(userId).get().addOnSuccessListener(userSnapshot -> {
+                String userName = userSnapshot.child("name").getValue(String.class);
 
-                // Now create Appointment object
-                DatabaseReference appointmentRef = FirebaseDatabase
+                // Now fetch medic fee
+                DatabaseReference medicRef = FirebaseDatabase
                         .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                        .getReference("appointments")
-                        .push();
+                        .getReference("Medics")
+                        .child(medicId);
 
-                String appointmentId = appointmentRef.getKey();
+                medicRef.get().addOnSuccessListener(medicSnapshot -> {
+                    Long fee = medicSnapshot.child("fee").getValue(Long.class);
+                    if (fee == null) fee = 0L;
 
-                Appointment appointment = new Appointment();
-                appointment.setId(appointmentId);
-                appointment.setUserId(userId);
-                appointment.setUserName(userName); // ✅ Store user's name
-                appointment.setMedicId(medicId);
-                appointment.setMedicName(medicName);
-                appointment.setProfileImageUrl(medicImageUrl);
-                appointment.setDate(selectedDate);
-                appointment.setTime(timeFormatted);
-                appointment.setLocation(location);
-                appointment.setNotes(notes);
-                appointment.setFees(0); // Or set actual fee
-                appointment.setStatus("pending");
+                    DatabaseReference appointmentRef = FirebaseDatabase
+                            .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            .getReference("appointments")
+                            .push();
 
-                appointmentRef.setValue(appointment)
-                        .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(this, "Appointment booked!", Toast.LENGTH_SHORT).show();
-                            finish();
-                        })
-                        .addOnFailureListener(e -> {
-                            Toast.makeText(this, "Booking failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        });
+                    String appointmentId = appointmentRef.getKey();
+
+                    Appointment appointment = new Appointment();
+                    appointment.setId(appointmentId);
+                    appointment.setUserId(userId);
+                    appointment.setUserName(userName);
+                    appointment.setMedicId(medicId);
+                    appointment.setMedicName(medicName);
+                    appointment.setProfileImageUrl(medicImageUrl);
+                    appointment.setDate(selectedDate);
+                    appointment.setTime(String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute));
+                    appointment.setLocation(locationEditText.getText().toString().trim());
+                    appointment.setNotes(notesEditText.getText().toString().trim());
+                    appointment.setFees(fee.intValue()); // ✅ set actual fee
+                    appointment.setStatus("pending");
+
+                    appointmentRef.setValue(appointment)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(this, "Appointment booked!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(this, "Booking failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            });
+
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to fetch medic fee", Toast.LENGTH_SHORT).show();
+                });
+
             }).addOnFailureListener(e -> {
                 Toast.makeText(this, "Failed to fetch user name", Toast.LENGTH_SHORT).show();
             });
         });
 
-    }
+        }
             private String getFormattedDate ( long timeInMillis){
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 return sdf.format(timeInMillis);

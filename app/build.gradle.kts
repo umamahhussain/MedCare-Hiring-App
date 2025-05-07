@@ -56,5 +56,9 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.10.1")
 
     implementation ("org.osmdroid:osmdroid-android:6.1.16")
+    implementation ("com.cloudinary:cloudinary-android:2.3.1")
+    implementation ("androidx.activity:activity:1.6.1")
+
+
 
 }
