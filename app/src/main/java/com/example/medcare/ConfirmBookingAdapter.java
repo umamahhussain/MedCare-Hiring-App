@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,8 +37,17 @@ public class ConfirmBookingAdapter extends RecyclerView.Adapter<ConfirmBookingAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Appointment appointment = appointments.get(position);
-        if (appointment == null) return;
+        if (appointment == null) {
+            Toast.makeText(holder.itemView.getContext(), "Appointment is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (appointment.getId() == null) {
+            Toast.makeText(holder.itemView.getContext(), "Appointment ID is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         holder.dateTimeText.setText(appointment.getDate() + " at " + appointment.getTime());
         holder.notesText.setText("Notes: " + appointment.getNotes());
@@ -64,20 +74,59 @@ public class ConfirmBookingAdapter extends RecyclerView.Adapter<ConfirmBookingAd
             holder.name.setText("No User ID");
         }
 
+
         holder.approveBtn.setOnClickListener(v -> {
-            Toast.makeText(context, "Approved", Toast.LENGTH_SHORT).show();
-            // Firebase update logic here
+            FirebaseDatabase
+                    .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("appointments")
+                    .child(appointment.getId())
+                    .child("status")
+                    .setValue("confirmed")
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(holder.itemView.getContext(), "Appointment confirmed", Toast.LENGTH_SHORT).show();
+                        holder.itemView.animate()
+                                .translationX(holder.itemView.getWidth())
+                                .alpha(0)
+                                .setDuration(300)
+                                .withEndAction(() -> {
+                                    appointments.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                });
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(context, "Failed to confirm", Toast.LENGTH_SHORT).show()
+                    );
         });
 
+
         holder.denyBtn.setOnClickListener(v -> {
-            Toast.makeText(context, "Denied", Toast.LENGTH_SHORT).show();
-            // Firebase delete logic here
+            FirebaseDatabase
+                    .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                    .getReference("appointments")
+                    .child(appointment.getId())
+                    .removeValue()
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(holder.itemView.getContext(), "Appointment denied and removed", Toast.LENGTH_SHORT).show();
+                        holder.itemView.animate()
+                                .translationX(-holder.itemView.getWidth())
+                                .alpha(0)
+                                .setDuration(300)
+                                .withEndAction(() -> {
+                                    appointments.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                });
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(context, "Failed to deny", Toast.LENGTH_SHORT).show()
+                    );
         });
+
+
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView dateTimeText, notesText, name, locationText;
-        Button approveBtn, denyBtn;
+        AppCompatButton approveBtn, denyBtn;
 
         ViewHolder(View itemView) {
             super(itemView);

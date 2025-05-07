@@ -52,7 +52,10 @@ public class ViewBookingsMedic extends AppCompatActivity {
                         appointmentList.clear();
                         for (DataSnapshot snap : snapshot.getChildren()) {
                             Appointment appt = snap.getValue(Appointment.class);
-                            appointmentList.add(appt);
+                            if (appt != null && "pending".equals(appt.getStatus())) {
+                                appointmentList.add(appt);
+                            }
+
                         }
                         adapter.notifyDataSetChanged();
                     }

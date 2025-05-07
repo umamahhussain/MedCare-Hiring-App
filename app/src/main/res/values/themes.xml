@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Medcare" parent="Base.Theme.Medcare" />
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
 </resources>

@@ -19,10 +19,20 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     private Context context;
     private List <Appointment> appointmentList;
+    private OnItemClickListener listener;
+
 
     public AppointmentAdapter(Context context, List<Appointment> appointmentList) {
         this.context = context;
         this.appointmentList = appointmentList;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Appointment appointment);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -53,6 +63,12 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             // No profile picture, show default
             holder.profileImage.setImageResource(R.drawable.boy);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(appointment);
+            }
+        });
     }
 
     @Override
