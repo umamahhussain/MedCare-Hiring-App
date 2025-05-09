@@ -1,6 +1,7 @@
 package com.example.medcare;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -53,7 +54,7 @@ public class ManageMedicProfile extends AppCompatActivity {
             "Geriatric Physiotherapy", "Pediatric Physiotherapy"
     };
 
-
+    private Button signOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,23 @@ public class ManageMedicProfile extends AppCompatActivity {
 
         resetButton.setOnClickListener(v -> loadProfile());
         saveButton.setOnClickListener(v -> saveProfile());
+
+        signOutButton = findViewById(R.id.buttonSignOut);
+
+        signOutButton.setOnClickListener(v -> {
+            // Firebase sign-out
+            FirebaseAuth.getInstance().signOut();
+
+            // Clear SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("MedCarePrefs", MODE_PRIVATE);
+            prefs.edit().clear().apply();
+
+            // Redirect to Login
+            Intent intent = new Intent(this, Login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+            startActivity(intent);
+            finish();
+        });
 
 
 

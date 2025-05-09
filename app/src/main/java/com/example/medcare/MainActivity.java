@@ -9,15 +9,17 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.*;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView title;
     TextView subTitle;
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference usersRef, medicsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +28,78 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+        mAuth = FirebaseAuth.getInstance();
 
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-            finish(); // Close the SplashActivity
-        }, 4000);
+        usersRef = FirebaseDatabase.getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Users");
+        medicsRef = FirebaseDatabase.getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Medics");
+
+        new Handler().postDelayed(() -> checkSession(), 4000); // wait 4s before checking
     }
 
-    public void init(){
+    public void init() {
         title = findViewById(R.id.title);
         subTitle = findViewById(R.id.subtitle);
-        Animation fade = AnimationUtils.loadAnimation(this,R.anim.fade_in);
+        Animation fade = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         title.startAnimation(fade);
         subTitle.startAnimation(fade);
+    }
+
+    private void checkSession() {
+        if (mAuth.getCurrentUser() != null) {
+            String userId = mAuth.getCurrentUser().getUid();
+
+            usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        String role = snapshot.child("role").getValue(String.class);
+                        goToDashboard(role);
+                    } else {
+                        medicsRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    String role = snapshot.child("role").getValue(String.class);
+                                    goToDashboard(role);
+                                } else {
+                                    goToLogin();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                goToLogin();
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    goToLogin();
+                }
+            });
+        } else {
+            goToLogin();
+        }
+    }
+
+    private void goToDashboard(String role) {
+        Intent intent;
+        if ("nurse".equalsIgnoreCase(role) || "Physiotherapist".equalsIgnoreCase(role)) {
+            intent = new Intent(this, MedicDashboard.class);
+        } else {
+            intent = new Intent(this, Home.class);
+        }
+        startActivity(intent);
+        finish();
+    }
+
+    private void goToLogin() {
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+        finish();
     }
 }
