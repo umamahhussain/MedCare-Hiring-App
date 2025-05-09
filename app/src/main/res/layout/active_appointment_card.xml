@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#FFFFFF"
+    android:layout_margin="20dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/confirmAppointmentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:fontFamily="@font/merriweather_light"
+        android:textStyle="bold"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/dateTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date and Time"
+        android:textColor="#555" />
+
+    <TextView
+        android:id="@+id/confirmAppointmentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textColor="#555" />
+
+    <TextView
+        android:id="@+id/notesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:textColor="#555" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/chatBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Chat"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/type1btn"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

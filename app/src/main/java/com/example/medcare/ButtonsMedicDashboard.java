@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 public class ButtonsMedicDashboard extends Fragment {
     AppCompatButton ManageProf;
     AppCompatButton ViewBookings;
+    AppCompatButton ViewActiveBookings;
 
     public ButtonsMedicDashboard() {
         // Required empty public constructor
@@ -39,6 +40,12 @@ public class ButtonsMedicDashboard extends Fragment {
         ViewBookings = view.findViewById(R.id.viewBookingsBtn);
         ViewBookings.setOnClickListener(v->{
             Intent i = new Intent(getActivity(), ViewBookingsMedic.class);
+            startActivity(i);
+        });
+
+        ViewActiveBookings = view.findViewById(R.id.viewActiveBookingsBtn);
+        ViewActiveBookings.setOnClickListener(v->{
+            Intent i = new Intent(getActivity(), ViewActiveBookingsMedic.class);
             startActivity(i);
         });
 

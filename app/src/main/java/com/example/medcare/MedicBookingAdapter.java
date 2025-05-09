@@ -27,7 +27,6 @@ public class MedicBookingAdapter extends RecyclerView.Adapter<MedicBookingAdapte
         this.context = context;
         this.medicList = medicList;
     }
-
     @NonNull
     @Override
     public MedicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -47,6 +47,7 @@ public class Login extends AppCompatActivity {
         signupLink.setOnClickListener(v -> {
             Intent intent = new Intent(this, SelectUser.class);
             startActivity(intent);
+            finish();
         });
 
         // Initialize Firebase Auth

@@ -8,79 +8,79 @@
     android:background="@drawable/gradient"
     tools:context=".Home">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical"
-       android:layout_marginTop="20dp"
-       android:layout_marginBottom="15dp"
-       android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="35dp"
+        android:gravity="center">
 
-       <androidx.fragment.app.FragmentContainerView
-           android:id="@+id/welcomeContainer"
-           android:name="com.example.medcare.WelcomeFragment"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           android:layout_weight="1"
-           tools:layout="@layout/fragment_welcome" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/welcomeContainer"
+            android:name="com.example.medcare.WelcomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_welcome" />
 
-       <androidx.fragment.app.FragmentContainerView
-           android:id="@+id/bookingContainer"
-           android:name="com.example.medcare.BookingFragment"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           android:layout_weight="3"
-           tools:layout="@layout/fragment_booking" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/bookingContainer"
+            android:name="com.example.medcare.BookingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            tools:layout="@layout/fragment_booking" />
 
-       <androidx.fragment.app.FragmentContainerView
-           android:id="@+id/appointmentContainer"
-           android:name="com.example.medcare.AppointmentsFragment"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           android:layout_weight="3"
-           tools:layout="@layout/fragment_appointments" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/appointmentContainer"
+            android:name="com.example.medcare.AppointmentsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            tools:layout="@layout/fragment_appointments" />
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:gravity="center"
-           android:layout_marginBottom="15dp"
-           android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"
+            android:padding="16dp">
 
-           <androidx.appcompat.widget.AppCompatButton
-               android:id="@+id/btnRatings"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="Ratings"
-               android:textSize="16sp"
-               android:textColor="@android:color/white"
-               android:background="@drawable/btn_bg"
-               android:layout_marginEnd="16dp"
-               android:padding="12dp"
-               android:drawablePadding="8dp"/>
-
-
-           <androidx.appcompat.widget.AppCompatButton
-               android:id="@+id/btnSupport"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:layout_height="wrap_content"
-               android:text="Support"
-               android:textSize="16sp"
-               android:textColor="@android:color/white"
-               android:background="@drawable/btn_bg"
-               android:padding="12dp"
-           android:drawablePadding="8dp"/>
-       </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRatings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ratings"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_bg"
+                android:layout_marginEnd="16dp"
+                android:padding="12dp"
+                android:drawablePadding="8dp"/>
 
 
-       <include
-           android:id="@+id/footer"
-           layout="@layout/footer" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSupport"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Support"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_bg"
+                android:padding="12dp"
+                android:drawablePadding="8dp"/>
+        </LinearLayout>
 
-   </LinearLayout>
+
+        <include
+            android:id="@+id/footer"
+            layout="@layout/footer" />
+
+    </LinearLayout>
 
 
 </FrameLayout>

@@ -41,9 +41,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.firebase.bom)
-    implementation (libs.firebase.auth)
-    implementation (libs.firebase.database.v2003)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
 
@@ -60,5 +57,11 @@ dependencies {
     implementation ("androidx.activity:activity:1.6.1")
 
 
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+
+    // Firebase components (no versions needed)
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-firestore")
 
 }

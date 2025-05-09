@@ -1,10 +1,12 @@
 package com.example.medcare;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -117,6 +119,20 @@ public class AppointmentsFragment extends Fragment {
         ((TextView) dialogView.findViewById(R.id.tvNotes)).setText("Notes: " + (appt.getNotes().isEmpty() ? "N/A" : appt.getNotes()));
 
         dialog.show();
+        Button contactBtn = dialogView.findViewById(R.id.btnContact);
+        contactBtn.setOnClickListener(v -> {
+            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String medicId = appt.getMedicId(); // assuming you store medicId in the Appointment object
+
+            Intent chatIntent = new Intent(requireContext(), user_and_medic_chat.class);
+            chatIntent.putExtra("userId", currentUserId);
+            chatIntent.putExtra("medicId", medicId);
+            chatIntent.putExtra("isMedic", false);
+            startActivity(chatIntent);
+
+            dialog.dismiss(); // optional: close the dialog after clicking Contact
+        });
+
     }
 
 }

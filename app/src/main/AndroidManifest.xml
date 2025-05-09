@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Medcare"
         tools:targetApi="31">
+        <activity
+            android:name=".ViewActiveBookingsMedic"
+            android:exported="false" />
+        <activity
+            android:name=".user_and_medic_chat"
+            android:exported="false" />
         <activity
             android:name=".MapPickerActivity"
             android:exported="false" />
