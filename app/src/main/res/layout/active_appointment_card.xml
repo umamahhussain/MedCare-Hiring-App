@@ -1,49 +1,120 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:background="#FFFFFF"
-    android:layout_margin="20dp"
-    android:layout_marginBottom="12dp">
+    android:layout_margin="16dp"
+    card_view:cardCornerRadius="16dp"
+    card_view:cardElevation="8dp"
+    android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/confirmAppointmentName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Name"
-        android:fontFamily="@font/merriweather_light"
-        android:textStyle="bold"
-        android:textSize="19sp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/dateTimeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date and Time"
-        android:textColor="#555" />
+        <!-- Name -->
+        <TextView
+            android:id="@+id/confirmAppointmentName"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:fontFamily="@font/merriweather_light"
+            android:text="User Name"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:id="@+id/confirmAppointmentLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location"
-        android:textColor="#555" />
+        <!-- Date and Time -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/notesText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notes"
-        android:textColor="#555" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/time"
+                android:layout_marginEnd="8dp"
+                card_view:tint="#000000" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/chatBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="Chat"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/type1btn"
-        android:textColor="@android:color/white"/>
-</LinearLayout>
+            <TextView
+                android:id="@+id/dateTimeText"
+                android:textSize="16sp"
+                android:text="12 Dec, 3:00 PM"
+                android:textColor="#444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Location -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/location"
+                android:layout_marginEnd="8dp"
+                card_view:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/confirmAppointmentLocation"
+                android:textSize="18sp"
+                android:text="Downtown Clinic"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Notes -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/notes"
+                android:layout_marginEnd="8dp"
+                card_view:tint="#000000" />
+
+            <TextView
+                android:id="@+id/notesText"
+                android:textSize="16sp"
+                android:text="Bring previous reports"
+                android:textColor="#444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Chat Button -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/chatBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat"
+                android:layout_marginTop="8dp"
+                android:layout_margin="5dp"
+                android:padding="7dp"
+                android:background="@drawable/type1btn"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

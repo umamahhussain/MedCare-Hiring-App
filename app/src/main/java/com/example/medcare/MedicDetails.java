@@ -30,7 +30,6 @@ public class MedicDetails extends AppCompatActivity {
         experienceTextView = findViewById(R.id.detailExperienceforMedicDetails);
         specialtyTextView = findViewById(R.id.detailSpecialtyforMedicDetails);
         feesTextView = findViewById(R.id.detailFeesforMedicDetails);
-        ratingTextView = findViewById(R.id.detailRatingforMedicDetails);
         availabilityTextView = findViewById(R.id.detailAvailabilityforMedicDetails);
         roleTextView = findViewById(R.id.detailRoleforMedicDetails);
         profileImageView = findViewById(R.id.detailImageforMedicDetails);
@@ -51,8 +50,7 @@ public class MedicDetails extends AppCompatActivity {
         nameTextView.setText(name);
         experienceTextView.setText(experience + " years of experience");
         specialtyTextView.setText("Specialization: " + specialty);
-        feesTextView.setText("Fees: $" + fees);
-        ratingTextView.setText("Rating: " + rating + " / 5");
+        feesTextView.setText("Fees: Rs. " + fees);
         availabilityTextView.setText("Available: " + (available ? "Yes" : "No"));
         roleTextView.setText("Role: " + role);
 

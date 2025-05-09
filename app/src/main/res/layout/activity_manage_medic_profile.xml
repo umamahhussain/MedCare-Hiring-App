@@ -79,7 +79,7 @@
 
         <EditText
             android:id="@+id/medicFeesProfileEdit"
-            android:hint="Consultation Fees"
+            android:hint="Consultation Fees (Hourly)"
             android:layout_margin="8dp"
             android:padding="12dp"
             android:layout_width="match_parent"

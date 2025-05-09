@@ -14,7 +14,7 @@ public class ButtonsMedicDashboard extends Fragment {
     AppCompatButton ManageProf;
     AppCompatButton ViewBookings;
     AppCompatButton ViewActiveBookings;
-
+    AppCompatButton ViewEarnings;
     public ButtonsMedicDashboard() {
         // Required empty public constructor
     }
@@ -46,6 +46,12 @@ public class ButtonsMedicDashboard extends Fragment {
         ViewActiveBookings = view.findViewById(R.id.viewActiveBookingsBtn);
         ViewActiveBookings.setOnClickListener(v->{
             Intent i = new Intent(getActivity(), ViewActiveBookingsMedic.class);
+            startActivity(i);
+        });
+
+        ViewEarnings = view.findViewById(R.id.viewEarningsBtn);
+        ViewEarnings.setOnClickListener(v->{
+            Intent i = new Intent(getActivity(), ViewEarnings.class);
             startActivity(i);
         });
 

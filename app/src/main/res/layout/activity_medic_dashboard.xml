@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="35dp"
         android:gravity="center">
 
         <androidx.fragment.app.FragmentContainerView
@@ -29,14 +29,77 @@
             android:name="com.example.medcare.ButtonsMedicDashboard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
+            android:layout_weight="7"
             tools:layout="@layout/fragment_buttons_medic_dashboard" />
 
-        <include
-            android:id="@+id/footer"
-            layout="@layout/footer" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
+            <!-- Circular Transparent Clock -->
+            <TextView
+                android:id="@+id/liveClock"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:text="00:00:00"
+                android:layout_marginLeft="15dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:background="@drawable/circular_clock_bg"
+                android:elevation="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- Timer Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/timerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_user_message"
+                    android:text="Start"
+                    android:layout_marginStart="16dp" /><!-- Earnings Text -->
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/resetButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finish"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_user_message"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/earningsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    android:fontFamily="@font/merriweather_light"
+                    android:textSize="18sp"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:textColor="#000"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-
 </FrameLayout>

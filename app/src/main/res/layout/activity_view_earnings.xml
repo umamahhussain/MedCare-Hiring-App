@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@drawable/gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewActiveBookingsMedic"
-    android:orientation="vertical"
-    android:background="@drawable/gradient"
+    tools:context=".ViewEarnings"
     android:padding="16dp">
 
+<!-- Summary -->
 <TextView
-    android:id="@+id/titleTextView"
+    android:id="@+id/summaryText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Active Appointments"
     android:fontFamily="@font/audiowide"
     android:background="@drawable/round_border"
-    android:textSize="22sp"
-    android:padding="13dp"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:letterSpacing="0.1"
-    android:paddingBottom="8dp"
-    android:textColor="#0066CC" />
+    android:text="Summary"
+    android:textSize="28sp"
+    android:padding="16dp"
+    android:textColor="#0066CC"
+    android:letterSpacing="0.2"
+    />
 
+<!-- RecyclerView for earnings history -->
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/appointmentsRecyclerViewActive"
+    android:id="@+id/earningsRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:paddingBottom="8dp"
-    tools:listitem="@layout/active_appointment_card" />
+    android:layout_marginTop="12dp"/>
 </LinearLayout>
