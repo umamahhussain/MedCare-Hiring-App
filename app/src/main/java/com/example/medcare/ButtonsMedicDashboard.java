@@ -15,6 +15,8 @@ public class ButtonsMedicDashboard extends Fragment {
     AppCompatButton ViewBookings;
     AppCompatButton ViewActiveBookings;
     AppCompatButton ViewEarnings;
+    AppCompatButton ViewHistoryButton;
+
     public ButtonsMedicDashboard() {
         // Required empty public constructor
     }
@@ -54,6 +56,13 @@ public class ButtonsMedicDashboard extends Fragment {
             Intent i = new Intent(getActivity(), ViewEarnings.class);
             startActivity(i);
         });
+
+        ViewHistoryButton = view.findViewById(R.id.viewHistoryBtn);
+        ViewHistoryButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ViewAppointmentHistoryActivity.class);
+            startActivity(intent);
+        });
+
 
         return view;
     }

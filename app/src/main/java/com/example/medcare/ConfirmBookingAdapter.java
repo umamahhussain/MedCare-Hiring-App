@@ -87,7 +87,7 @@ public class ConfirmBookingAdapter extends RecyclerView.Adapter<ConfirmBookingAd
                         holder.itemView.animate()
                                 .translationX(holder.itemView.getWidth())
                                 .alpha(0)
-                                .setDuration(300)
+                                .setDuration(800)
                                 .withEndAction(() -> {
                                     appointments.remove(holder.getAdapterPosition());
                                     notifyItemRemoved(holder.getAdapterPosition());
@@ -104,22 +104,24 @@ public class ConfirmBookingAdapter extends RecyclerView.Adapter<ConfirmBookingAd
                     .getInstance("https://medcare-cd8cc-default-rtdb.asia-southeast1.firebasedatabase.app/")
                     .getReference("appointments")
                     .child(appointment.getId())
-                    .removeValue()
+                    .child("status")
+                    .setValue("declined")
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(holder.itemView.getContext(), "Appointment denied and removed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(holder.itemView.getContext(), "Appointment declined", Toast.LENGTH_SHORT).show();
                         holder.itemView.animate()
                                 .translationX(-holder.itemView.getWidth())
                                 .alpha(0)
-                                .setDuration(300)
+                                .setDuration(800)
                                 .withEndAction(() -> {
                                     appointments.remove(holder.getAdapterPosition());
                                     notifyItemRemoved(holder.getAdapterPosition());
                                 });
                     })
                     .addOnFailureListener(e ->
-                            Toast.makeText(context, "Failed to deny", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Failed to decline", Toast.LENGTH_SHORT).show()
                     );
         });
+
 
 
     }

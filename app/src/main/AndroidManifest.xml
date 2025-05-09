@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Medcare"
         tools:targetApi="31">
         <activity
+            android:name=".ViewAppointmentHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ManageUserProfile"
             android:exported="false" />
         <activity
