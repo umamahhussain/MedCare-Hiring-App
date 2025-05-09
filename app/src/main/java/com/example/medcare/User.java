@@ -8,20 +8,27 @@ public class User {
     private Integer age;
     private String role;
 
+    private String gender;
+    private String profileImageUrl;
+    private String address;
+    private String bloodGroup;
+
     public User() {
     }
 
-    // Full constructor
-    public User(String userId, String name, String email, String phone, Integer age, String role) {
+    public User(String userId, String name, String email, String phone, Integer age, String role, String gender, String profileImageUrl, String address, String bloodGroup) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.age = age;
         this.role = role;
+        this.gender = gender;
+        this.profileImageUrl = profileImageUrl;
+        this.address = address;
+        this.bloodGroup = bloodGroup;
     }
 
-    // Getters and Setters
     public String getUserId() {
         return userId;
     }
@@ -68,5 +75,37 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
     }
 }

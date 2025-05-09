@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManageMedicProfile"
     android:padding="16dp"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    tools:context=".ManageUserProfile">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal">
 
         <ImageView
-            android:id="@+id/profileImageManageMedic"
+            android:id="@+id/profileImageManageUser"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/boy"
@@ -30,11 +28,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tap to change"
+            android:padding="6dp"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/medicNameProfileEdit"
+            android:id="@+id/userNameEdit"
             android:hint="Full Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
             android:layout_marginTop="16dp"/>
 
         <EditText
-            android:id="@+id/medicEmailProfileEdit"
+            android:id="@+id/userEmailEdit"
             android:hint="Email"
             android:enabled="false"
             android:layout_margin="8dp"
@@ -54,7 +53,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/medicPhoneProfileEdit"
+            android:id="@+id/userPhoneEdit"
             android:hint="Phone"
             android:layout_margin="8dp"
             android:padding="12dp"
@@ -62,67 +61,43 @@
             android:layout_height="wrap_content"
             android:inputType="phone" />
 
-
-        <Spinner
-            android:id="@+id/medicSpecializationSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
         <EditText
-            android:id="@+id/medicExperienceProfileEdit"
-            android:hint="Experience (Years)"
+            android:id="@+id/userAgeEdit"
+            android:hint="Age"
             android:layout_margin="8dp"
             android:padding="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number" />
 
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
+
         <EditText
-            android:id="@+id/medicFeesProfileEdit"
-            android:hint="Consultation Fees (Hourly)"
+            android:id="@+id/userAddressEdit"
+            android:hint="Address"
             android:layout_margin="8dp"
             android:padding="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="textPostalAddress" />
 
-        <LinearLayout
+        <Spinner
+            android:id="@+id/bloodGroupSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_margin="8dp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:padding="12dp"
-                android:layout_weight="1"
-                android:text="Available for bookings?" />
-
-            <Switch
-                android:id="@+id/availabilitySwitchManageProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <!-- Add missing fields -->
         <TextView
-            android:id="@+id/roleTextView"
+            android:id="@+id/userRoleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Role"
             android:textColor="@color/white"
             android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/ratingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rating"
-            android:textColor="@color/white"
-            android:layout_marginTop="4dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,7 +105,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/saveProfileMedicButton"
+                android:id="@+id/saveUserProfileButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -142,7 +117,7 @@
                 android:layout_marginTop="20dp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/resetProfileMedicButton"
+                android:id="@+id/resetUserProfileButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

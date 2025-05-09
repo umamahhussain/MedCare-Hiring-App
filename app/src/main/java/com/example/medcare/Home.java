@@ -15,6 +15,7 @@ import com.mikepenz.iconics.view.IconicsImageView;
 public class Home extends AppCompatActivity {
 
     Button Support;
+    Button Profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +23,21 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         init();
+        Support.setOnClickListener(v -> {
+            Intent i = new Intent(this, Support.class);
+            startActivity(i);
+        });
+        Profile.setOnClickListener(v -> {
+            Intent i = new Intent(this, ManageUserProfile.class);
+            startActivity(i);
+        });
 
 
     }
 
     public void init(){
+
         Support = findViewById(R.id.btnSupport);
+        Profile = findViewById(R.id.btnUserProfile);
     }
 }

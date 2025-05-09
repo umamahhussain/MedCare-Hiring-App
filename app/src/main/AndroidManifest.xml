@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Medcare"
         tools:targetApi="31">
         <activity
+            android:name=".ManageUserProfile"
+            android:exported="false" />
+        <activity
             android:name=".ViewEarnings"
             android:exported="false" />
         <activity
