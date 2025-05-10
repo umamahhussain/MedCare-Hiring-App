@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class SelectUser extends AppCompatActivity {
-
     CardView patient;
     CardView medic;
+    TextView signinLink;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +43,16 @@ public class SelectUser extends AppCompatActivity {
             intent.putExtra("EXTRA_IS_PATIENT", false);
             startActivity(intent);
         });
+        signinLink.setOnClickListener(v -> {
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+            finish();
+        });
     }
 
     public void init(){
         patient = findViewById(R.id.patientCard);
         medic = findViewById(R.id.medicCard);
+        signinLink = findViewById(R.id.loginLink);
     }
 }

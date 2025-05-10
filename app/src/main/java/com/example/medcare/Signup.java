@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +23,7 @@ public class Signup extends AppCompatActivity {
 
     EditText fullName, email, number, password, confirmPassword, dobET;
     Button signupButton;
+    TextView signinLink;
 
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
@@ -47,6 +49,11 @@ public class Signup extends AppCompatActivity {
         dobET.setOnClickListener(v -> {
             openDatePicker();
         });
+        signinLink.setOnClickListener(v -> {
+            Intent i = new Intent(Signup.this, Login.class);
+            startActivity(i);
+            finish();
+        });
     }
 
     public void init() {
@@ -57,6 +64,7 @@ public class Signup extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmPasswordET);
         dobET = findViewById(R.id.dobET);
         signupButton = findViewById(R.id.buttonSignUp);
+        signinLink = findViewById(R.id.loginLink);
     }
 
     private void openDatePicker() {
