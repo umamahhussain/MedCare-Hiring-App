@@ -32,7 +32,7 @@ public class EarningsAdapter extends RecyclerView.Adapter<EarningsAdapter.Earnin
     public void onBindViewHolder(@NonNull EarningsViewHolder holder, int position) {
         Earnings e = earningsList.get(position);
         holder.timeText.setText("Duration: " + formatDuration(e.getDurationMillis()));
-        holder.amountText.setText("Earned: ₹" + String.format("%.2f", e.getAmountEarned()));
+        holder.amountText.setText("Earned: Rs." + String.format("%.2f", e.getAmountEarned()));
 
         Date date = new Date(e.getTimestamp());
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault());

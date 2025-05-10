@@ -14,12 +14,13 @@ tools:context=".ViewBookingsMedic">
     android:id="@+id/titleTextView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Your Pending Appointments"
+    android:text="Pending Appointments"
     android:fontFamily="@font/audiowide"
-    android:textSize="24sp"
+    android:background="@drawable/round_border"
+    android:textSize="22sp"
     android:layout_gravity="center"
     android:gravity="center"
-    android:paddingBottom="8dp"
+    android:padding="8dp"
     android:textColor="#0066CC" />
 
 <androidx.recyclerview.widget.RecyclerView

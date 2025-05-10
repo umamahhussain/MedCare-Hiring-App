@@ -9,17 +9,17 @@ android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewEarnings"
-    android:padding="16dp">
+    android:padding="14dp">
 
 <!-- Summary -->
 <TextView
     android:id="@+id/summaryText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/audiowide"
+    android:fontFamily="@font/merriweather_light"
     android:background="@drawable/round_border"
     android:text="Summary"
-    android:textSize="15sp"
+    android:textSize="18sp"
     android:padding="16dp"
     android:textColor="#0066CC"
     android:letterSpacing="0.2"
