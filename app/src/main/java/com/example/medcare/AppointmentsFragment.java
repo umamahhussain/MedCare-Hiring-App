@@ -115,7 +115,7 @@ public class AppointmentsFragment extends Fragment {
         ((TextView) dialogView.findViewById(R.id.tvDoctorName)).setText("Dr. " + appt.getMedicName());
         ((TextView) dialogView.findViewById(R.id.tvDateTime)).setText("Date: " + appt.getDate() + " | Time: " + appt.getTime());
         ((TextView) dialogView.findViewById(R.id.tvLocation)).setText("Location: " + appt.getLocation());
-        ((TextView) dialogView.findViewById(R.id.tvFees)).setText("Fees: $" + appt.getFees());
+        ((TextView) dialogView.findViewById(R.id.tvFees)).setText("Fees: Rs." + appt.getFees());
         ((TextView) dialogView.findViewById(R.id.tvNotes)).setText("Notes: " + (appt.getNotes().isEmpty() ? "N/A" : appt.getNotes()));
 
         dialog.show();

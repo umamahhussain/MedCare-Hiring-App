@@ -1,6 +1,7 @@
 package com.example.medcare;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,7 @@ public class Support extends AppCompatActivity {
     private ChatAdapter chatAdapter;
     private List<String> messages;
     private AppCompatEditText editTextMessage;
-    private IconicsImageView buttonSend;
+    private ImageView buttonSend;
 
     private static final String API_KEY = "AIzaSyALapbW3VkHQT9CXTatjM_40HCHyaYcHG4";
 

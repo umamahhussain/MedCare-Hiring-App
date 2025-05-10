@@ -7,9 +7,12 @@
 
     <style name="Theme.Medcare" parent="Base.Theme.Medcare" />
 
-    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowMinWidthMajor">90%</item>
+
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>

@@ -117,8 +117,16 @@ public class ManageUserProfile extends AppCompatActivity {
                     public void onSuccess(String requestId, Map resultData) {
                         String imageUrl = (String) resultData.get("secure_url");
                         userRef.child("profileImageUrl").setValue(imageUrl);
+
+                        // Add this line to immediately load the image from Cloudinary
+                        Glide.with(ManageUserProfile.this)
+                                .load(imageUrl)
+                                .placeholder(R.drawable.boy)
+                                .into(profileImage);
+
                         Toast.makeText(ManageUserProfile.this, "Image uploaded!", Toast.LENGTH_SHORT).show();
                     }
+
 
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
